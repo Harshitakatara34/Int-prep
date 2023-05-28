@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pagination Example</title>
+  <style>
+    .data-item {
+      margin-bottom: 10px;
+    }
+    .pagination {
+      margin-top: 20px;
+    }
+    .pagination button {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pagination Example</h1>
+
+  <div id="data-container">
+    <!-- Data items will be dynamically added here -->
+  </div>
+
+  <div id="pagination-container" class="pagination">
+    <!-- Pagination buttons will be dynamically added here -->
+  </div>
+
+  <script>
+    // Sample data (replace this with your own data source)
+    var data = [
+      "Data item 1",
+      "Data item 2",
+      "Data item 3",
+      "Data item 4",
+      "Data item 5",
+      "Data item 6",
+      "Data item 7",
+      "Data item 8",
+      "Data item 9",
+      "Data item 10",
+      "Data item 11",
+      "Data item 12"
+    ];
+
+    var currentPage = 1;
+    var itemsPerPage = 4;
+
+    function displayData(currentPage) { // 2
+      var startIndex = (currentPage - 1) * itemsPerPage;// 1 * 4 = 4 
+      var endIndex = startIndex + itemsPerPage; // 4 + 4 = 8 
+      var dataToShow = data.slice(startIndex, endIndex);// 4 8  *=> 4 5 6 7
+
+      var dataContainer = document.getElementById('data-container');
+      dataContainer.innerHTML = '';
+
+      dataToShow.forEach(function(item) {
+        var dataItem = document.createElement('div');
+        dataItem.className = 'data-item';
+        dataItem.innerText = item;
+        dataContainer.appendChild(dataItem);
+      });
+    }
+
+    function displayPagination() {
+      var totalPages = Math.ceil(data.length / itemsPerPage);
+
+      var paginationContainer = document.getElementById('pagination-container');
+      
+      paginationContainer.innerHTML = '';
+  
+      for (var i = 1; i <= totalPages; i++) {
+        var button = document.createElement('button');
+        button.innerText = i;
+        
+        button.onclick = function() {
+          // The value of This is = button depend on line no. 72
+          currentPage = parseInt(this.innerText);
+           console.log(this,this.innerText)
+          displayData(currentPage);
+        };
+
+        paginationContainer.appendChild(button);
+      }
+    }
+
+    displayData(currentPage);
+    displayPagination();
+  </script>
+</body>
+</html>
