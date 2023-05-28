@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Phone Clock</title>
+  <style>
+    .clock-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      font-size: 48px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Phone Clock</h1>
+
+  <div class="clock-container">
+    <div id="clock"></div>
+  </div>
+
+  <script>
+    // Function to update the clock display
+    function updateClock() {
+      var now = new Date();
+      var date = now.toDateString();
+      var time = now.toLocaleTimeString();
+  console.log(date)
+  console.log(time)
+  console.log(typeof(now))
+    // console.log(now.join(" "))
+      var clockDisplay = document.getElementById('clock');
+      clockDisplay.innerHTML = date + "<br>" + time;
+    }
+
+    // Call the updateClock function initially to display the current time
+    updateClock();
+
+    // Update the clock every second
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>

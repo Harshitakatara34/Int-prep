@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Timer Application</title>
+</head>
+<body>
+    <h1 id="timer">00:00:00</h1>
+    <h2 id="day">Day: </h2>
+    <button id="startButton" onclick="startTimer()">Start</button>
+    <button id="stopButton" onclick="stopTimer()">Stop</button>
+<button id="reset" onclick="Reset()">Reset</button>
+    <script>
+        const timerElement = document.getElementById('timer');
+        const dayElement = document.getElementById('day');
+        let startTime;
+        let elapsedTime = 0;
+        let timerInterval;
+function Reset(){
+    clearInterval(timerInterval)
+   elapsedTime=0;
+   timerElement.innerHTML=    formatTime(0) + 'd ' + formatTime(0) + ':' + formatTime(0) + ':' + formatTime(0);
+}
+        function startTimer() {
+            if (!timerInterval) {
+                startTime = Date.now() - elapsedTime;
+                console.log("starttime",startTime)
+                timerInterval = setInterval(updateTimer, 1000);
+            }
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            elapsedTime = Date.now() - startTime;
+        }
+
+        function updateTimer() {
+            const currentTime = Date.now();
+            console.log(currentTime)
+            elapsedTime = currentTime - startTime;
+ console.log("elapsed",elapsedTime)
+            const days = Math.floor(elapsedTime / (24 * 3600 * 1000));
+            const hours = Math.floor((elapsedTime % (24 * 3600 * 1000)) / (3600 * 1000));
+            const minutes = Math.floor((elapsedTime % (3600 * 1000)) / (60 * 1000));
+            const seconds = Math.floor((elapsedTime % (60 * 1000)) / 1000);
+
+            timerElement.textContent = formatTime(days) + 'd ' + formatTime(hours) + ':' + formatTime(minutes) + ':' + formatTime(seconds);
+            
+            const currentDay = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+            console.log(new Date())
+            dayElement.textContent = 'Day: ' + currentDay;
+        }
+
+        function formatTime(time) {
+            return time < 10 ? '0' + time : time;
+        }
+    </script>
+</body>
+</html>
