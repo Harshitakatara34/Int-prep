@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masai Calculator</title>
+    <style>
+        *{
+            text-align: center;
+        }
+        h1{
+            color: teal;
+        }
+        .box{
+            width: 28%;
+            height: 700px;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: repeat(5,1fr);
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            gap: 18px;
+            margin: auto;
+            padding: 55px 55px 80px 55px;
+        }
+        .box>div:nth-child(1){
+            grid-column-start: 1;
+            grid-column-end: 5;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 65px;
+        }
+        .box>div{
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            padding-top: 40px;
+            font-size: 40px;
+            border-radius: 12px;
+        }
+        .box>div:nth-child(5),
+        .box>div:nth-child(9),
+        .box>div:nth-child(13),
+        .box>div:nth-child(16),
+        .box>div:nth-child(17){
+            background-color: black;
+            color: white;
+        }
+        .box>div:nth-child(14){
+            color: white;
+            background-color:red;
+
+        }
+        .box>div~div:hover{
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <h1>Masai Calculator</h1>
+    <div class="box">
+        <div id="display"></div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>+</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>-</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>*</div>
+        <div>C</div>
+        <div>0</div>
+        <div>=</div>
+        <div>/</div>
+
+    </div>
+    
+</body>
+</html>
+<script>
+   let bag="";
+   let keys=document.querySelectorAll("#display~div");
+   for(let i=0;i<keys.length;i++){
+    keys[i].addEventListener("click",myCall);
+   }
+   function myCall(event){
+    let targetNumber=event.target.innerText;
+    console.log(event.target.innerText)
+    if(targetNumber =="C"){
+        bag="";
+        document.querySelector("#display").innerText=bag;
+    }else if(targetNumber == "="){
+        let res=eval(bag);
+        document.querySelector("#display").innerText=res;
+    }else{
+        bag=bag+targetNumber;
+        document.querySelector("#display").innerText=bag;
+    }
+   }
+    
+</script>
