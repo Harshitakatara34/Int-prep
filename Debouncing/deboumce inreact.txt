@@ -1,0 +1,24 @@
+import React, { useState, useEffect } from 'react';
+
+const DebouncedInput = () => {
+  const [inputValue, setInputValue] = useState('');
+  
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      // Perform your desired action here (e.g., API call, updating state)
+      console.log('Fetching Data...', inputValue);
+    }, 300);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [inputValue]);
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  return (
+    <input type="text" value={inputValue} onChange={handleInputChange} />
+  );
+};
+
+export default DebouncedInput;

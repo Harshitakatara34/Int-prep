@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" oninput="betterFunction(event)"/>
+</body>
+</html>
+<script>
+    // Debouncing in Javascript
+let counter = 0;
+
+const getData = (c) => {
+  // calls an API and gets Data
+  console.log(c.target.value);
+  console.log("Fetching Data ..", counter++);
+}
+
+const debounce = function (fn, d) {
+  
+  let timer;
+  return function (...args) {// we can take any variable name in place of args 
+    console.log(args)
+    let context = this;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(context, args);
+    }, d);
+  }
+}
+
+const betterFunction = debounce(getData, 300);
+</script>
