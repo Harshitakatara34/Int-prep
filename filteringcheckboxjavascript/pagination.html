@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        #bada-bhai {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="filter-container">
+        <h4>Filter:</h4>
+        <label for="electronics" class="checkbox">
+            <input type="checkbox" id="electronics" onchange="filterProducts()">electronics
+        </label>
+        <label for="jewelery" class="checkbox">
+            <input type="checkbox" id="jewelery" onchange="filterProducts()">jewelery
+        </label>
+        <label for="women's clothing" class="checkbox">
+            <input type="checkbox" id="women's clothing" onchange="filterProducts()">women's clothing
+        </label>
+        <label for="men's clothing" class="checkbox">
+            <input type="checkbox" id="men's clothing" onchange="filterProducts()">men's clothing
+        </label>
+    </div>
+
+
+    <div class="sort-price">
+        <h3>Sort by Price</h3>
+
+        <label for="asc">
+            <label for="">
+                <input type="radio" id="ascend" name="price" onchange="sortProductsByPrice()" value="asc">
+                ASC
+            </label>
+            <label for="">
+                <input type="radio" id="descend" name="price" onchange="sortProductsByPrice()" value="desc">
+                DESC
+            </label>
+        </label>
+    </div>
+
+    <div id="pagination-container" class="pagination">
+        <!-- Pagination buttons will be dynamically added here -->
+    </div>
+
+    <div id="bada-bhai">
+
+    </div>
+
+    <script>
+        let Products = [];
+        let currentPage = 1;
+        const itemsPerPage = 4;
+      
+        async function getData() {
+    try {
+        let url = `https://fakestoreapi.com/products`;
+        let res = await fetch(url);
+        let data = await res.json();
+        console.log(data);
+        Products = data;
+        if (data.length > 0) {
+            displayData(getCurrentPageData());
+            displayPagination();
+        }
+    } catch (error) {
+        alert("Error while fetching data!");
+    }
+}
+
+function getCurrentPageData() {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return Products.slice(startIndex, endIndex);
+}
+
+function displayPagination() {
+    var paginationContainer = document.getElementById("pagination-container");
+    paginationContainer.innerHTML = "";
+
+    const totalPages = Math.ceil(Products.length / itemsPerPage);
+
+    for (var i = 1; i <= totalPages; i++) {
+        var button = document.createElement("button");
+        button.innerText = i;
+        button.onclick = function () {
+            currentPage = parseInt(this.innerText);
+            displayData(getCurrentPageData());
+        };
+
+        paginationContainer.appendChild(button);
+    }
+}
+
+
+        getData();
+
+        function sortProductsByPrice() {
+            let asc = document.getElementById("ascend").checked;
+            let desc = document.getElementById("descend").checked;
+            console.log(asc, desc);
+            if (asc) {
+                let ascending = Products.sort((a, b) => a.price - b.price);
+                displayData(ascending);
+            }
+            if (desc) {
+                let descending = Products.sort((a, b) => b.price - a.price);
+                displayData(descending);
+            }
+        }
+
+        function filterProducts() {
+            let filters = document.querySelectorAll("input[type=checkbox]");
+            console.log(filters);
+
+            let selected = [];
+
+            // Add filters for selected categories if it's checked
+            filters.forEach((filter) => {
+                if (filter.checked) {
+                    selected.push(filter.nextSibling.textContent.trim());
+                    console.log(filter.nextSibling.textContent);
+                }
+            });
+
+            console.log(selected);
+            // Filter the data
+           
+            if (selected.length !== 0) {
+let filteredData = Products.filter((el) => {
+return selected.includes(el.category);
+});
+
+
+            displayData(filteredData);
+        } else {
+            displayData(Products);
+        }
+    }
+
+
+
+    let productContainer = document.getElementById("bada-bhai");
+
+    function displayData(data) {
+        productContainer.innerHTML = "";
+
+        data.forEach((el) => {
+            let div = document.createElement("div");
+
+            let image = document.createElement("img");
+            image.setAttribute("src", el.image);
+            image.style.width = "200px";
+            image.style.height = "200px";
+
+            let price = document.createElement("h2");
+            price.innerText = `₹ ${el.price}`;
+            let category = document.createElement("h1");
+            category.innerText = el.category;
+            div.append(image, category, price);
+            productContainer.append(div);
+        });
+    }
+
+
+    
+</script>

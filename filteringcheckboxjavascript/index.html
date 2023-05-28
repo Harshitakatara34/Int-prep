@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        #bada-bhai {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="filter-container">
+        <h4>Filter:</h4>
+        <label for="electronics" class="checkbox">
+            <input type="checkbox" id="electronics" onchange="filterProducts()">electronics
+        </label>
+        <label for="jewelery" class="checkbox">
+            <input type="checkbox" id="jewelery" onchange="filterProducts()">jewelery
+        </label>
+        <label for="men's clothing" class="checkbox">
+            <input type="checkbox" id="women's clothing" onchange="filterProducts()">women's clothing
+        </label>
+        <label for="women's clothing" class="checkbox">
+            <input type="checkbox" id="men's clothing" onchange="filterProducts()">men's clothing
+        </label>
+    </div>
+
+
+    <div class="sort-price">
+        <h3>Sort by Price</h3>
+
+        <label for="asc">
+            <label for="">
+                <input type="radio" id="ascend" name="price" onchange="SortByPrice()" value="asc">
+                ASC
+            </label>
+            <label for="">
+                <input type="radio" id="descend" name="price" onchange="SortByPrice()" value="desc">
+                DESC
+            </label>
+        </label>
+    </div>
+
+    <div id="bada-bhai">
+
+    </div>
+</body>
+
+</html>
+<script>
+    let url = `https://fakestoreapi.com/products`
+    let Products = [];
+    async function getData() {
+        try {
+            let res = await fetch(url)
+            let data = await res.json();
+            console.log(data);
+            Products = data;
+            DisplayData(data)
+        } catch (error) {
+            alert("Error while fetching !!")
+        }
+    }
+
+    getData()
+
+
+    function SortByPrice() {
+        let asc = document.getElementById("ascend").checked
+        let desc = document.getElementById("descend").checked
+        console.log(asc, desc)
+        if (asc) {
+            let ascending = Products.sort((a, b) => a.price - b.price)
+            DisplayData(ascending);
+        }
+        if (desc) {
+            let descending = Products.sort((a, b) => b.price - a.price)
+            DisplayData(descending);
+        }
+
+    }
+    function filterProducts() {
+        let filters = document.querySelectorAll("input[type=checkbox]");
+        console.log(filters);
+
+        let selected = [];
+
+        // add filters on selected categories if it got 's' checked 
+        filters.forEach((filter) => {
+            if (filter.checked) {
+                selected.push(filter.nextSibling.textContent.trim());
+                console.log(filter.nextSibling.textContent);
+            }
+        })
+
+        console.log(selected);
+        //  filted the data
+        if (selected.length != 0) {
+            let filteredData = Products.filter((el) => {
+                return selected.includes(el.category)
+            })
+
+            DisplayData(filteredData)
+        }
+        else {
+            DisplayData(Products);
+        }
+
+    }
+
+    let productcontainer = document.getElementById("bada-bhai");
+
+    function DisplayData(data) {
+        productcontainer.innerHTML = "";
+
+        data.forEach((el) => {
+            let div = document.createElement("div");
+
+            let image = document.createElement("img");
+            image.setAttribute("src", el.image)
+            image.style.width = "200px";
+            image.style.height = "200px";
+
+            let categori = document.createElement("h4");
+            categori.innerText = el.category;
+            div.append(image, categori);
+            productcontainer.append(div);
+        })
+
+    }
+</script>
