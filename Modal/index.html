@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal</title>
+    <style>
+        /* Modal container styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+
+        /* Modal content styles */
+        .modal-content {
+            position: relative;
+            margin: auto;
+            width: 50%;
+            max-width: 500px;
+            padding: 1.5rem;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            margin-top: 20%;
+        }
+
+        /* Close button styles */
+        .modal-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button class="modal-button">Open Modal</button>
+
+    <div class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h1>Modal Title</h1>
+            <p>This is the modal content.</p>
+        </div>
+    </div>
+
+    <script>
+        const modalButton = document.querySelector('.modal-button');
+        const modal = document.querySelector('.modal');
+        const modalClose = document.querySelector('.modal-close');
+
+        modalButton.addEventListener('click', function() {
+            modal.style.display = 'block';
+        });
+
+        modalClose.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

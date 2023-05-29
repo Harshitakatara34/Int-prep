@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 3D Transformation */
+    .threed-element {
+      transition: transform 5s ease;
+      border: 2px solid red;
+      border-radius: 150px;
+      height: 200px;
+      width:200px;
+      background-color: aqua;
+      text-align: center;
+      margin-left: 100px;
+      margin-top: 200px;
+    }
+
+    .threed-element:hover {
+      transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+
+    /* 2D Transformation */
+    /* .twod-element {
+      transition: transform 0.3s ease;
+    } */
+
+    /* .threed-element:hover {
+      transform: rotate(360deg) scale(1.5) translate(100px,200px);
+    } */
+  </style>
+</head>
+<body>
+ <div class="threed-element"></div>
+  <h1 class="twod-element"></h1>
+</body>
+</html>
