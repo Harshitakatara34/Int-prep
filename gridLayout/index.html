@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Grid Layout</title>
+        <link rel="stylesheet" href="index.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/b02e4bf11c.js"></script>
+    </head>
+	<body>
+		<!-- Header -->
+		<header class="header flex">
+			<h1 class="logo">Stimulus</h1>
+			<span class="menu"><i class="fas fa-bars"></i></span>
+			<nav class="nav">
+				<ul class="flex links">
+					<li><a href="">Home</a></li>
+					<li><a href="">About me</a></li>
+					<li><a href="">Testimonials</a></li>
+					<li><a href="">Experiences</a></li>
+					<li><a href="">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+		<!-- Main -->
+		<main class="main">
+			<section class="grid">
+				<div class="home">
+				</div>
+				<div class="hero padding">
+					<span class="heading">Welcome to my website</span>
+					<h2 class="title">
+						Hello, I am <span class="hero-name">Stimulus</span> currently Based in <span class="hero-location">new york</span> city.
+					</h2>
+					<p class="description">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat.
+					</p>
+					<button class="btn">get started</button>
+				</div>
+			</section>
+			
+			<section class="grid">
+				<div class="donec padding">
+					<h2 class="title">
+						Donec auctor
+					</h2>
+					<span class="heading donec-heading">
+						Sed vulputae vitae diam quis bibendum
+					</span>
+					<p class="description donec-description">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua.
+					</p>
+					<p class="description donec-description">	
+						Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur.
+					</p>
+				</div>
+				<div class="donec-image"> </div>
+				<div class="skills padding">
+					<h2 class="title skills-title">My Skills</h2>
+					<span class="heading skills-heading">
+						Photoshop . HTML CSS JS . Web Design
+					</span>
+					<div class="skill flex">
+						<span class="skill-name skill-1">Frontend Design</span>
+						<span class="skill-percent">90%</span>
+					</div>
+					<div class="skill flex">
+						<span class="skill-name skill-2">Backend processing</span>
+						<span class="skill-percent">70%</span>
+					</div>
+					<div class="skill flex">
+						<span class="skill-name skill-3">HTML & CSS</span>
+						<span class="skill-percent">80%</span>
+					</div>
+				</div>
+			</section>
+
+			<section class="grid">
+				<div class="media padding skilling">
+					<div class="media-logo">
+						<i class="fas fa-desktop"></i>
+					</div>
+					<h3 class="title skills-logo-heading">Interface Design</h3>
+					<p class="description skills-logo-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. consectetur adipisicing elit.</p>
+				</div>
+				<div class="media padding">
+					<div class="media-logo"><i class="fas fa-paper-plane"></i></div>
+					<h3 class="title media-title">Media Strategy</h3>
+					<p class="description media-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. consectetur adipisicing elit.</p>
+				</div>
+				<div class="media padding mobile">
+					<div class="media-logo"><i class="fas fa-calendar-alt"></i></div>
+					<h3 class="title media-title">Mobile App</h3>
+					<p class="description media-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. consectetur adipisicing elit.</p>
+				</div>
+				<div class="media padding coding">
+					<div class="media-logo"><i class="fab fa-html5"></i></div>
+					<h3 class="title media-title">Coding</h3>
+					<p class="description media-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. consectetur adipisicing elit.</p>
+				</div>
+			</section>
+			
+		 
+
+			<section class="grid">
+				<div class="education padding">
+					<h2 class="title experience-title">My Education</h2>
+					<span class="heading experience-heading">Learning Full Stack Web development</span>
+					<div class="work">
+						<span class="work-logo"><i class="fas fa-laptop"></i></span>
+						<div class="work-experience">
+							<span class="work-title">Full Stack Web Developer</span>
+							<span class="work-duration edu-duration">September 2022-June 2023</span>
+						</div>
+						<p class="work-description">
+							 HTML,CSS, JS , React, Redux,DSA, Chakra-UI,Node.js , MongoDB
+						</p>
+					</div>
+						<div class="work">
+							<span class="work-logo"><i class="fas fa-laptop"></i></span>
+							<div class="work-experience">
+								<span class="work-title">12th</span>
+								<span class="work-duration edu-duration">2020-june</span>
+							</div>
+							<p class="work-description">
+								 PCM Subjects 
+							</p>
+						</div>
+					</div>
+					<div class="education-img"></div>
+			</section>
+
+			<section class="grid">
+				<div class="contact-form padding">
+					<span class="title contact-heading">Say hello...</span>
+					<span class="heading contact-heading">Integer ut consectetur est. In cursus orci non ipsum gravida dignissim
+					</span>
+					<form class="form-control">
+						<input type="text" placeholder="Your Name" name="">
+						<input type="email" placeholder="Your Email" name="">
+						<textarea rows="7" placeholder="Write your message..."></textarea>
+						<button class="btn form-btn">Send</button>
+					</form>
+				</div>
+				<div class="contact-img"> </div>
+				<div class="office padding">
+					<h2 class="title office-title">Visit my office</h2>
+					<span class="heading office-address">Bangalore , </span>
+					<h3 class="title office-contact">Contact.</h3>
+					<ul class="contact-list">
+						<li class="contact-list-item"><i class="fas fa-phone-alt"></i> 01-0110-0220</li>
+						<li>
+							<i class="far fa-envelope"></i> 
+							<span>masai.school.lcom</span>
+						</li>
+						<li><i class="fas fa-globe-asia"></i> company.co</li>
+					</ul>
+				</div>
+			</section>
+
+			
+			<section class="map padding">
+				<div class="google-map">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13504.714156683292!2d76.36039842754958!3d32.19941944840177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391b522c7cd8b85b%3A0x9d68653444d4c03a!2sRakkar%2C+Himachal+Pradesh!5e0!3m2!1sen!2sin!4v1560836152586!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+				</div>
+			</section>
+		</main>
+		<!-- Footer -->
+		<footer class="footer">
+			<span>Copyright &copy; 2019 Your Compay | <span><a href="#">templatemo</a></span></span>
+			<ul class="flex social">
+				<li class="social-item"><i class="fab fa-facebook-f"></i></li>
+				<li class="social-item"><i class="fab fa-twitter"></i></li>
+				<li class="social-item"><i class="fab fa-google-plus-g"></i></li>
+				<li class="social-item"><i class="fab fa-dribbble"></i></li>
+				<li class="social-item"><i class="fab fa-linkedin-in"></i></li>
+			</ul>
+		</footer>
+	</body>
+</html>

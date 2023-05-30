@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .drag-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .drag-item {
+      /* width: 200px;
+      height: 40px; */
+      background-color: #3ea611;
+      margin-bottom: 10px;
+      cursor: grab;
+      transition: transform 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <ul id="dragList" class="drag-list">
+    <li class="drag-item">Item 1</li>
+    <li class="drag-item">Item 2</li>
+    <li class="drag-item">Item 3</li>
+    <li class="drag-item">Item 4</li>
+    <li class="drag-item">Item 5</li>
+  </ul>
+
+  <script>
+    var dragList = document.getElementById("dragList");
+    var dragItems = dragList.getElementsByClassName("drag-item");
+    var currentItem = null;
+    var initialIndex = 0;
+    var currentIndex = 0;
+    var offsetY = 0;
+
+    // Function to handle the start of dragging
+    function dragStart(event) {
+      currentItem = this;
+      currentItem.style.opacity = "0.4";
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("text/html", this.innerHTML);
+      initialIndex = Array.prototype.indexOf.call(dragItems, currentItem);
+      offsetY = event.clientY - currentItem.getBoundingClientRect().top;
+    }
+
+    // Function to handle the dragging motion
+    function drag(event) {
+      event.preventDefault();
+      currentItem.style.transform = "translateY(" + (event.clientY - offsetY) + "px)";
+      currentIndex = getIndex(event.clientY);
+      if (currentIndex !== initialIndex) {
+        swapItems(initialIndex, currentIndex);
+      }
+    }
+
+    // Function to get the current index based on the mouse position
+    function getIndex(y) {
+      for (var i = 0; i < dragItems.length; i++) {
+        var item = dragItems[i];
+        var rect = item.getBoundingClientRect();
+        var middle = rect.top + rect.height / 2;
+        if (y < middle) {
+          return i;
+        }
+      }
+      return dragItems.length - 1;
+    }
+
+    // Function to swap the positions of two items
+    function swapItems(fromIndex, toIndex) {
+      if (toIndex < fromIndex) {
+        dragList.insertBefore(dragItems[fromIndex], dragItems[toIndex]);
+      } else {
+        dragList.insertBefore(dragItems[fromIndex], dragItems[toIndex + 1]);
+      }
+    }
+
+    // Function to handle the end of dragging
+    function dragEnd() {
+      currentItem.style.transform = "none";
+      currentItem.style.opacity = "1";
+      currentItem = null;
+    }
+
+    // Attach the event listeners
+    for (var i = 0; i < dragItems.length; i++) {
+      dragItems[i].addEventListener("dragstart", dragStart);
+      dragItems[i].addEventListener("drag", drag);
+      dragItems[i].addEventListener("dragend", dragEnd);
+    }
+  </script>
+</body>
+</html>

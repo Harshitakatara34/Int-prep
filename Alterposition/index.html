@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #dragElement {
+      width: 100px;
+      height: 100px;
+      background-color: #ffcc00;
+      position: absolute;
+      left: 0;
+      top: 0;
+      cursor: move;
+    }
+  </style>
+</head>
+<body>
+  <div id="dragElement"></div>
+   
+
+  <script>
+    // Get the draggable element
+    var dragElement = document.getElementById("dragElement");
+
+    // Initialize the starting position
+    var startPosX = 0;
+    var startPosY = 0;
+
+    // Function to handle the start of dragging
+    function dragStart(event) {
+      startPosX = event.clientX - dragElement.offsetLeft;
+      startPosY = event.clientY - dragElement.offsetTop;
+    }
+
+    // Function to handle the dragging motion
+    function drag(event) {
+      event.preventDefault();
+      dragElement.style.left = (event.clientX - startPosX) + "px";
+      dragElement.style.top = (event.clientY - startPosY) + "px";
+    }
+
+    // Attach the event listeners
+    dragElement.addEventListener("mousedown", dragStart);
+    document.addEventListener("mousemove", drag);
+    dragElement.addEventListener("mouseup", function () {
+      document.removeEventListener("mousemove", drag);
+    });
+  </script>
+</body>
+</html>

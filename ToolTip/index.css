@@ -1,4 +1,9 @@
-
+    .content{
+        display: flex;
+        flex-direction: column;
+        row-gap: 60px;
+    }
+    
    .final__tooltip {
     position: relative;
     height: 60px;
